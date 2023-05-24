@@ -2,6 +2,7 @@ package com.ead.authuser.models;
 
 import com.ead.authuser.enums.UserStatus;
 import com.ead.authuser.enums.UserType;
+import com.ead.authuser.utils.DateUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
@@ -68,4 +69,8 @@ public class UserModel implements Serializable {
     @Column(nullable = false)
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime lastUpdateDate;
+
+    public void refreshLastUpdateDate() {
+        this.setLastUpdateDate(DateUtil.getLocalDateTimeUTC());
+    }
 }
